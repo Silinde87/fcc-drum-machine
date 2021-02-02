@@ -2,3 +2,26 @@ body{
     margin: 0;
     padding: 0;
 }
+
+#buttons{
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.drum-pad{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+    transition: all .07s ease;
+    box-shadow: 5px 5px 5px 0px rgba(163,163,163,1);
+}
+
+.playing{
+    transform: scale(0.9);
+    
+}
