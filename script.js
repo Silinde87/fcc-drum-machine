@@ -73,6 +73,7 @@ function showDisplay(keyCode){
             display.appendChild(noteDisplay);
         }
     }
+    window.setTimeout(removeDisplay, 2000);
 }
 
 function removeDisplay(){
@@ -98,6 +99,7 @@ btn.forEach((button) => {
     button.addEventListener('click', () => {
         Object.getOwnPropertyNames(sounds).some(key => {
             if(sounds[key].keyTrigger === button.textContent){
+                showDisplay(key);
                 playSound(key);
             }
         });
@@ -108,9 +110,9 @@ window.addEventListener('keydown', (e) => {
     showDisplay(e.keyCode);
     playSound(e.keyCode);
 });
-window.addEventListener('keyup', () => {
-    removeDisplay();
-});
+
+window.setTimeout(removeDisplay, 1000);
+
 
 const keys = Array.from(document.querySelectorAll('.drum-pad'));
 keys.forEach(key => key.addEventListener('transitionend', removeTransition));
