@@ -60,11 +60,34 @@ function removeTransition(e){
     e.target.classList.remove('playing');
 }
 
-function playSound(e) {
-    const sound = new Audio(sounds[e].note);
-    let key = document.querySelector(`#${sounds[e].keyTrigger}`);
+function showDisplay(keyCode){
+    //Show note on display
+    const display = document.querySelector('#display');
+    if(display.firstChild !== null){
+        display.firstChild.textContent = `${sounds[keyCode].id}`;
+    }else{
+        const noteDisplay = document.createElement('p')
+        noteDisplay.setAttribute('id','note-display');
+        noteDisplay.innerHTML = `${sounds[keyCode].id}`;
+        display.appendChild(noteDisplay);    
+    }
+}
+
+function removeDisplay(){
+    const display = document.querySelector('#display');
+    const noteDisplay = document.getElementById('note-display');
+    if(noteDisplay != null){
+        display.removeChild(noteDisplay); 
+    }
+}
+
+function playSound(keyCode) {
+    if(sounds[keyCode] === undefined) return; //Exit when not parameterized key is pressed
+    const sound = document.createElement(`audio`);
+    sound.setAttribute('src',`${sounds[keyCode].note}`);
+    //applying style when key is pressed
+    const key = document.querySelector(`#${sounds[keyCode].keyTrigger}`);
     key.classList.add('playing');
-    console.log(sound);
     sound.play();
 }
 
@@ -79,13 +102,12 @@ btn.forEach((button) => {
     });
 });
 
-
-$(document).keydown(function(e){
-    Object.getOwnPropertyNames(sounds).some(key =>{
-        if(sounds[key].keyCode === e.which){
-            playSound(key);
-        }
-    });
+window.addEventListener('keydown', (e) => {
+    showDisplay(e.keyCode);
+    playSound(e.keyCode);
+});
+window.addEventListener('keyup', () => {
+    removeDisplay();
 });
 
 const keys = Array.from(document.querySelectorAll('.drum-pad'));
