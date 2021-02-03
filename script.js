@@ -2,56 +2,56 @@ const sounds = {
     81:{
         keyCode: 81,
         keyTrigger: 'Q',
-        id: 'C4',
-        note: '/sounds/Piano.mf.C4.wav'
+        id: 'Chord 1',
+        note: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3'
     },
     87:{
         keyCode: 87,
         keyTrigger: 'W',
-        id: 'D4',
-        note: '/sounds/Piano.mf.D4.wav'
+        id: 'Chord 2',
+        note: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3'
     },
     69:{
         keyCode: 69,
         keyTrigger: 'E',
-        id: 'E4',
-        note: '/sounds/Piano.mf.E4.wav'
+        id: 'Chord 3',
+        note: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3'
     },
     65:{
         keyCode: 65,
         keyTrigger: 'A',
-        id: 'F4',
-        note: '/sounds/Piano.mf.F4.wav'
+        id: 'Clap',
+        note: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3'
     },
     83:{
         keyCode: 83,
         keyTrigger: 'S',
-        id: 'G4',
-        note: '/sounds/Piano.mf.G4.wav'
+        id: 'Open-HH',
+        note: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3'
     },
     68:{
         keyCode: 68,
         keyTrigger: 'D',
-        id: 'A4',
-        note: '/sounds/Piano.mf.A4.wav'
+        id: 'Closed-HH',
+        note: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3'
     },
     90:{
         keyCode: 90,
         keyTrigger: 'Z',
-        id: "B4",
-        note: '/sounds/Piano.mf.B4.wav'
+        id: "Punchy-Kick",
+        note: 'https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3'
     },
     88:{
         keyCode: 88,
         keyTrigger: 'X',
-        id: 'C5',
-        note: '/sounds/Piano.mf.C5.wav'
+        id: 'Side-Stick',
+        note: 'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3'
     },
     67:{
         keyCode: 67,
         keyTrigger: 'C',
-        id: 'D5',
-        note: '/sounds/Piano.mf.D5.wav'
+        id: 'Snare',
+        note: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
     }
 };
 
@@ -68,8 +68,10 @@ function showDisplay(keyCode){
     }else{
         const noteDisplay = document.createElement('p')
         noteDisplay.setAttribute('id','note-display');
-        noteDisplay.innerHTML = `${sounds[keyCode].id}`;
-        display.appendChild(noteDisplay);    
+        if(sounds[keyCode] != undefined){
+            noteDisplay.innerHTML = `${sounds[keyCode].id}`;
+            display.appendChild(noteDisplay);
+        }
     }
 }
 
